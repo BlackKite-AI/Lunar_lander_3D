@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+<robot name="cargo_lander">
+  <!-- Lander body -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder radius="1.0" length="2.0"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="1.0" length="2.0"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="200"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="2" iyy="2" izz="2" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+<!-- Half-sphere on top -->
+  <link name="half_sphere">
+    <visual>
+      <geometry>
+        <sphere radius="1.0"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="1.0"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="50"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.5" iyy="0.5" izz="0.5" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="half_sphere_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="half_sphere"/>
+    <origin xyz="0 0 1" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Engines at 4 corners of the bottom -->
+  <!-- Engine 1 -->
+  <link name="engine_1">
+    <visual>
+      <geometry>
+        <cylinder radius="0.2" length="0.5"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.2" length="0.5"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="20"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="engine_1_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="engine_1"/>
+    <origin xyz="1.2 0 -0.75" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Engine 2 -->
+  <link name="engine_2">
+    <visual>
+      <geometry>
+        <cylinder radius="0.2" length="0.5"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.2" length="0.5"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="20"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="engine_2_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="engine_2"/>
+    <origin xyz="-1.2 0 -0.75" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Engine 3 -->
+  <link name="engine_3">
+    <visual>
+      <geometry>
+        <cylinder radius="0.2" length="0.5"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.2" length="0.5"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="20"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="engine_3_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="engine_3"/>
+    <origin xyz="0 1.2 -0.75" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Engine 4 -->
+  <link name="engine_4">
+    <visual>
+      <geometry>
+        <cylinder radius="0.2" length="0.5"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.2" length="0.5"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="20"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="engine_4_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="engine_4"/>
+    <origin xyz="0 -1.2 -0.75" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Legs -->
+  <!-- Leg 1 -->
+  <link name="leg_1">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 1.0"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 1.0"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="5"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="leg_1_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="leg_1"/>
+    <origin xyz="0.8 0.8 -1.0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Leg 2 -->
+  <link name="leg_2">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 1.0"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 1.0"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="5"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="leg_2_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="leg_2"/>
+    <origin xyz="-0.8 0.8 -1.0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Leg 3 -->
+  <link name="leg_3">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 1.0"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 1.0"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="5"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="leg_3_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="leg_3"/>
+    <origin xyz="-0.8 -0.8 -1.0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Leg 4 -->
+  <link name="leg_4">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 1.0"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 1.0"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="5"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="leg_4_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="leg_4"/>
+    <origin xyz="0.8 -0.8 -1.0" rpy="0 0 0"/>
+  </joint>
+
+</robot>
+
